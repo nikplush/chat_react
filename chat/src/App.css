@@ -1,0 +1,12 @@
+.main-wrapper {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+}
+
+.logout-button{
+   position: absolute!important;
+   top: 10px;
+   right: 10px;
+}

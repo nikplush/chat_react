@@ -1,0 +1,50 @@
+.dialog-wrapper {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   height: 95vh;
+   width: 50%;
+   padding: 10px;
+   box-shadow: 10px 5px 5px rgba(0, 0, 0, 25%);
+}
+
+.messages-wrapper {
+   overflow-x: hidden;
+
+}
+
+.message-container {
+   display: flex;
+   justify-content: flex-start;
+
+}
+
+.message {
+   max-width: 40%;
+   margin: 3px;
+   padding: 0 5px 0 5px;
+   color: wheat;
+   background: #4848b2;
+   border-radius: 5px;
+   word-break: break-word;
+
+}
+
+.my {
+   justify-content: flex-end;
+}
+
+.input-wrapper {
+   margin-top: 10px;
+}
+
+.message-title {
+   background: #4848b2;
+   box-shadow: 10px 5px 5px rgba(0, 84, 255, 0.25);
+   height: 100px;
+   position: relative;
+   overflow: hidden;
+   display: flex;
+   align-items: center;
+   padding: 10px;
+}

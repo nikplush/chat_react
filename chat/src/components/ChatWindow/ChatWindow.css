@@ -1,0 +1,65 @@
+.message-wrapper {
+   margin: 10px;
+   max-width: 40%;
+   width: min-content;
+   padding: 5px 10px 5px 10px;
+   background-color: #04202C;
+   border-radius: 5px;
+   color: #C9D1C8;
+   overflow: auto;
+   word-wrap: break-word;
+}
+
+.page-wrapper {
+   width: 50%;
+   height: 90vh;
+   justify-content: space-between;
+}
+
+.left {
+   margin-left: auto;
+}
+
+.right {
+   margin-right: auto;
+}
+
+.content-wrapper {
+   display: flex;
+   flex-direction: column;
+
+}
+.input-wrapper{
+   background-color: #04202C;
+   width: 100%;
+   min-height: 50px;
+   display: flex;
+   /*align-content: center;*/
+}
+
+.input_wap{
+   border-radius: 20px;
+   margin: 5px 3px 5px 0;
+   width: 100%;
+   background-color: #fff;
+   display: flex;
+   align-items: center;
+}
+
+.input-style{
+   border: none;
+   width: 100%;
+   margin: 0 10px 0 10px;
+   height: 80%;
+}
+
+input:focus{
+   border: none;
+   outline: none;
+}
+
+.messages-wrapper {
+   overflow: auto;
+   overflow-x: hidden;
+   margin-right: 5px;
+}

@@ -1,0 +1,40 @@
+.users-wrapper {
+   height: 95vh;
+   width: 50%;
+   box-shadow: 10px 5px 5px rgba(0, 0, 0, 25%);
+}
+.user-icon {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 24px;
+   width: 40px;
+   height: 40px;
+   border-radius: 20px;
+   margin-right: 5px;
+}
+
+.user-title {
+   display: flex;
+   justify-content: space-between;
+}
+
+.user-name {
+   display: flex;
+   align-items: center;
+}
+.status{
+   position: absolute;
+   right: 5%;
+   bottom: 0;
+   width: 16px;
+   height: 16px;
+   border-radius: 8px;
+}
+.online {
+   background: #9ac260;
+}
+
+.offline {
+   background: #a2a2a2;
+}
