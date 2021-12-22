@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import './App.css'
+import PrivateRoute from './routes/PrivateRoute/PrivateRoute'
+import PublicRoute from './routes/PublicRoute/PublicRoute'
 
 function App () {
   const [userId, setUserId] = useState()
-  console.log('LOOG', userId)
   useEffect(() => {
     setUserId(localStorage.getItem('userId'))
   }, [])
@@ -12,28 +13,10 @@ function App () {
   return (
         <div className="main-wrapper">
             <BrowserRouter>
-                {/* {userId */}
-                {/*  ? <> */}
-                {/*        <Button className='logout-button'>Log out</Button> */}
-                {/*        <Switch> */}
-                {/*            <Route path={'/chat'} component={Chat}/> */}
-                {/*            <Redirect to={'/chat'}/> */}
-                {/*        </Switch> */}
-                {/*    </> */}
-                {/*  : <Switch> */}
-                {/*        <Route path={'/registration'} */}
-                {/*               render={() => ( */}
-                {/*                   <Registration/> */}
-                {/*               )} */}
-                {/*        /> */}
-                {/*        <Route path={'/login'} */}
-                {/*               render={() => ( */}
-                {/*                   <Login/> */}
-                {/*               )} */}
-                {/*        /> */}
-                {/*        <Redirect to={'/login'}/> */}
-                {/*    </Switch> */}
-                {/* } */}
+                {userId
+                  ? <PrivateRoute/>
+                  : <PublicRoute/>
+                }
             </BrowserRouter>
 
         </div>

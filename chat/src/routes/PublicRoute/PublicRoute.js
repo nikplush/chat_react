@@ -7,7 +7,7 @@ import {
 import Login from '../../components/pages/Login/Login'
 import Registration from '../../components/pages/Registration/Registration'
 
-const PrivateRoute = () => {
+const PublicRoute = () => {
   return (
         <Switch>
             <Switch>
@@ -19,4 +19,4 @@ const PrivateRoute = () => {
   )
 }
 
-export default PrivateRoute
+export default PublicRoute
