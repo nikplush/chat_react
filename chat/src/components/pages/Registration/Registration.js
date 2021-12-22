@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 import axios from 'axios'
 import {
   Form,
@@ -6,14 +7,13 @@ import {
   toaster,
   Message
 } from 'rsuite'
+import { Link } from 'react-router-dom'
 import CustomTextField from '../../modules/CustomTextField/CustomTextField'
 import { validationModel } from '../../../utils/validators/userInputs'
-import { Card } from '../../modules/Card/Card'
-import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom'
-import PropTypes from 'prop-types'
+import Card from '../../modules/Card/Card'
+import { PATH } from '../../../constans/api_paths'
 
-const Registration = ({ changeUser }) => {
+const Registration = () => {
   const history = useHistory()
   const formRef = React.useRef()
   const [formError, setFormError] = useState({})
@@ -24,10 +24,9 @@ const Registration = ({ changeUser }) => {
     if (!Object.keys(formError).length) {
       const { userName, password } = formValue
       try {
-        const user = await axios.post('http://localhost:3001/auth/registration', { userName, password })
+        const user = await axios.post(PATH.REGISTRATION, { userName, password })
         localStorage.setItem('userId', user.data._id)
         history.push('chat')
-        changeUser(user.data._id)
       } catch (e) {
         toaster.push(<Message type={'error'}>{e.response.data}</Message>, 'topCenter')
       }
@@ -63,7 +62,3 @@ const Registration = ({ changeUser }) => {
   )
 }
 export default Registration
-
-Registration.propTypes = {
-  changeUser: PropTypes.func.isRequired
-}

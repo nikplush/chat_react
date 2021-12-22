@@ -1,32 +1,22 @@
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import {
   Button,
-  Form,
-  Message,
-  toaster
+  Form
 } from 'rsuite'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 import { Link } from 'react-router-dom'
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import axios from 'axios'
-import { Card } from '../../modules/Card/Card'
-import { validationModel } from '../../../utils/validators/userInputs'
+import Card from '../../modules/Card/Card'
 import CustomTextField from '../../modules/CustomTextField/CustomTextField'
+import { validationModel } from '../../../utils/validators/userInputs'
+import { fetchUser } from '../../../store/slaices/userInfo'
 
-const Login = ({ changeUser }) => {
-  const history = useHistory()
+const Login = () => {
   const [formValue, setFormValue] = useState({ userName: '', password: '' })
+  const dispatch = useDispatch()
 
   const registrationUser = async () => {
     const { userName, password } = formValue
-    try {
-      const user = await axios.post('http://localhost:3001/auth/login', { userName, password })
-      localStorage.setItem('userId', user.data._id)
-      history.push('chat')
-      changeUser(user.data._id)
-    } catch (e) {
-      toaster.push(<Message type={'error'}>{e.message}</Message>, 'topCenter')
-    }
+    await dispatch(fetchUser({ userName, password }))
   }
 
   return (
@@ -55,7 +45,3 @@ const Login = ({ changeUser }) => {
   )
 }
 export default Login
-
-Login.propTypes = {
-  changeUser: PropTypes.func.isRequired
-}

@@ -2,14 +2,15 @@ import React from 'react'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 import classNames from 'classnames'
 import { Button } from 'rsuite'
-import PropTypes from 'prop-types'
 import axios from 'axios'
 import { stringToHslColor } from '../../../../../utils/helper/userAvatar'
 import './Users.css'
+import { useSelector } from 'react-redux'
 
-const Users = ({ users }) => {
-  const myId = localStorage.getItem('userId')
+const Users = () => {
   const history = useHistory()
+  const myId = localStorage.getItem('userId')
+  const users = useSelector(state => state.users.users)
 
   const openDialog = async (targetId) => {
     try {
@@ -57,13 +58,3 @@ const Users = ({ users }) => {
 }
 
 export default Users
-
-Users.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.shape({
-    _id: PropTypes.number,
-    userName: PropTypes.string,
-    password: PropTypes.string,
-    dialogsId: [PropTypes.number],
-    lastDialogId: [PropTypes.number]
-  })).isRequired
-}
