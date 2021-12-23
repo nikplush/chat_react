@@ -53,6 +53,8 @@ export const fetchUserById = createAsyncThunk('userInfoById/fetchUserInfoById', 
   return user.data
 })
 
+export const getUserInfo = state => state.userInfo.userInfo
+
 export const { logout } = userInfoSlice.actions
 
 export default userInfoSlice.reducer

@@ -4,11 +4,12 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom'
 import { Button } from 'rsuite'
 import UserIcon from '../../modules/UserIcon/UserIcon'
 import './Users.css'
+import {getUsers} from "../../../store/slaices/users";
 
 const Users = () => {
   const history = useHistory()
   const myId = localStorage.getItem('userId')
-  const users = useSelector(state => state.users.users)
+  const users = useSelector(getUsers)
   const filteredUser = users.filter(user => user._id !== myId)
 
   const openDialog = async (targetId) => {
