@@ -41,11 +41,11 @@ const socketServer = (httpServer) => {
   io.on('connect', (socket) => {
     socket.on(SOCKET_PATHS.USER_CONNECT, (id) => {
       onlineUsers.push({ socket: socket, id })
-      socket.broadcast.emit(SOCKET_PATHS.PING, { userId: id })
+      socket.broadcast.emit(SOCKET_PATHS.ALERT_OTHER_USERS, { userId: id })
     })
 
-    socket.on(SOCKET_PATHS.PONG, (id) => {
-      socket.broadcast.emit(SOCKET_PATHS.PONG, { userId: id })
+    socket.on(SOCKET_PATHS.USERS_ALERT_ME, (id) => {
+      socket.broadcast.emit(SOCKET_PATHS.USERS_ALERT_ME, { userId: id })
     })
 
     socket.on(SOCKET_PATHS.SEND_MESSAGE, async (data) => {

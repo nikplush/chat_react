@@ -7,7 +7,6 @@ import {
 import { Link } from 'react-router-dom'
 import Card from '../../modules/Card/Card'
 import CustomTextField from '../../modules/CustomTextField/CustomTextField'
-import { validationModel } from '../../../utils/validators/userInputs'
 import { loginUser } from '../../../store/slaices/userInfo'
 
 const Login = () => {
@@ -23,7 +22,6 @@ const Login = () => {
         <div>
             <Card title={'Login'}>
                 <Form
-                    model={validationModel}
                     onChange={setFormValue}
                     formValue={formValue}
                 >

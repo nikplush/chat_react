@@ -19,12 +19,12 @@ const PrivateRoute = () => {
     dispatch(fetchUsers())
     socket.emit(EVENTS.USER_CONNECT, myId)
 
-    socket.on(EVENTS.PING, data => {
+    socket.on(EVENTS.ALERT_OTHER_USERS, data => {
       dispatch(changeUserStatus({ id: data.userId, isOnline: true }))
-      socket.emit(EVENTS.PONG, myId)
+      socket.emit(EVENTS.USERS_ALERT_ME, myId)
     })
 
-    socket.on(EVENTS.PONG, (data) => {
+    socket.on(EVENTS.USERS_ALERT_ME, (data) => {
       dispatch(changeUserStatus({ id: data.userId, isOnline: true }))
     })
 
