@@ -8,15 +8,15 @@ import { Link } from 'react-router-dom'
 import Card from '../../modules/Card/Card'
 import CustomTextField from '../../modules/CustomTextField/CustomTextField'
 import { validationModel } from '../../../utils/validators/userInputs'
-import { fetchUser } from '../../../store/slaices/userInfo'
+import { loginUser } from '../../../store/slaices/userInfo'
 
 const Login = () => {
   const [formValue, setFormValue] = useState({ userName: '', password: '' })
   const dispatch = useDispatch()
 
-  const registrationUser = async () => {
+  const loginTargetUser = async () => {
     const { userName, password } = formValue
-    await dispatch(fetchUser({ userName, password }))
+    await dispatch(loginUser({ userName, password }))
   }
 
   return (
@@ -33,7 +33,7 @@ const Login = () => {
                         <Button
                             appearance="primary"
                             type="submit"
-                            onClick={registrationUser}>
+                            onClick={loginTargetUser}>
                             Submit
                         </Button>
                         <Link to={'/registration'}>Create user</Link>

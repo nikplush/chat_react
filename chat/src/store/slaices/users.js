@@ -4,6 +4,7 @@ import { PATH } from '../../constans/api_paths'
 
 const initialState = {
   users: [],
+  friendIndex: -1,
   error: null
 }
 
@@ -20,6 +21,12 @@ export const usersSlice = createSlice({
     },
     addUser: (state, action) => {
       state.users.push(action.payload)
+    },
+    getSelectedUserById: (state, action) => {
+      const friendIndex = state.users.findIndex(item => item._id === action.payload)
+      if (friendIndex > -1) {
+        state.friendIndex = friendIndex
+      }
     }
   },
   extraReducers (builder) {
@@ -36,6 +43,6 @@ export const fetchUsers = createAsyncThunk('user/fetchUsers', async () => {
   return allUsers.data.map((item) => ({ ...item, online: false }))
 })
 
-export const { changeUserStatus } = usersSlice.actions
+export const { changeUserStatus, getSelectedUserById } = usersSlice.actions
 
 export default usersSlice.reducer

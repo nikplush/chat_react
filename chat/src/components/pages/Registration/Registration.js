@@ -1,36 +1,22 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom'
-import axios from 'axios'
 import {
   Form,
-  Button,
-  toaster,
-  Message
+  Button
 } from 'rsuite'
 import { Link } from 'react-router-dom'
 import CustomTextField from '../../modules/CustomTextField/CustomTextField'
 import { validationModel } from '../../../utils/validators/userInputs'
+import { registrationUser } from '../../../store/slaices/userInfo'
 import Card from '../../modules/Card/Card'
-import { PATH } from '../../../constans/api_paths'
+import { useDispatch } from 'react-redux'
 
 const Registration = () => {
-  const history = useHistory()
-  const formRef = React.useRef()
-  const [formError, setFormError] = useState({})
   const [formValue, setFormValue] = useState({ userName: '', password: '' })
+  const dispatch = useDispatch()
 
-  const registrationUser = async () => {
-    formRef.current.check()
-    if (!Object.keys(formError).length) {
-      const { userName, password } = formValue
-      try {
-        const user = await axios.post(PATH.REGISTRATION, { userName, password })
-        localStorage.setItem('userId', user.data._id)
-        history.push('chat')
-      } catch (e) {
-        toaster.push(<Message type={'error'}>{e.response.data}</Message>, 'topCenter')
-      }
-    }
+  const registrUser = async () => {
+    const { userName, password } = formValue
+    await dispatch(registrationUser({ userName, password }))
   }
 
   return (
@@ -38,9 +24,7 @@ const Registration = () => {
             <Card title={'Registration'}>
                 <Form
                     model={validationModel}
-                    ref={formRef}
                     onChange={setFormValue}
-                    onCheck={setFormError}
                     formValue={formValue}
                 >
                     <CustomTextField name="userName" label="Username"/>
@@ -49,10 +33,9 @@ const Registration = () => {
                         <Button
                             appearance="primary"
                             type="submit"
-                            onClick={registrationUser}>
+                            onClick={registrUser}>
                             Submit
                         </Button>
-                            {/* <Loader backdrop content="loading..." vertical /> */}
                         <Link to={'/login'}>Log in as an existing user</Link>
                     </div>
                 </Form>
