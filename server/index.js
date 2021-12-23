@@ -8,7 +8,7 @@ const Dialog = require('./Models/Dialog')
 const authRouter = require('./Routers/auth')
 const usersRouter = require('./Routers/users')
 const dialoguesRouter = require('./Routers/dialogues')
-const SOCKET_PATHS = require('./constans/sockets')
+const SOCKET_PATHS = require('./constants/sockets')
 
 app.use(express.json())
 

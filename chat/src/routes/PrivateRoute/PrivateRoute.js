@@ -9,7 +9,7 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { changeUserStatus, fetchUsers } from '../../store/slaices/users'
 import { socket } from '../../utils/sockets'
-import { EVENTS } from '../../constans/sockets'
+import { EVENTS } from '../../constants/sockets'
 
 const PrivateRoute = () => {
   const myId = localStorage.getItem('userId')

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { PATH } from '../../constans/api_paths'
+import { PATH } from '../../constants/api_paths'
 
 const initialState = {
   userInfo: {},
