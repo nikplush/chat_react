@@ -48,3 +48,9 @@
    align-items: center;
    padding: 10px;
 }
+
+.icon-button {
+   background: #4848b2;
+   margin: 0 5px 0 0;
+   color: wheat;
+}

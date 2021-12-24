@@ -1,58 +1,41 @@
-import './App.css';
-import Registration from "./components/pages/Autification/components/Registration/Registration";
-import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
-import Login from "./components/pages/Autification/components/Login/Login";
-import Chat from "./components/pages/Chat/Chat";
-import {useEffect, useState} from "react";
-import {Button} from "rsuite";
+import React, { useEffect, useState } from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import PrivateRoute from './routes/PrivateRoute/PrivateRoute'
+import PublicRoute from './routes/PublicRoute/PublicRoute'
+import {fetchUserById, getUserInfo} from './store/slaices/userInfo'
+import './App.css'
 
-function App() {
-    const [userId, setUserId] = useState()
+function App () {
+  const myId = localStorage.getItem('userId')
+  const [userId, setUserId] = useState(myId)
+  const dispatch = useDispatch()
+  const userInfo = useSelector(getUserInfo)
 
-    useEffect(() => {
-        setUserId(localStorage.getItem('userId'))
-    }, [])
-
-    const changeUser = (id) => {
-        setUserId(id)
+  useEffect(() => {
+    if (myId) {
+      dispatch(fetchUserById(userId))
     }
+  }, [])
 
-    const logoutUser = () => {
-        setUserId('')
-        localStorage.removeItem('userId')
+  useEffect(() => {
+    if (userInfo._id) {
+      setUserId(userInfo._id)
     }
+  }, [userInfo])
 
-    return (
+  return (
         <div className="main-wrapper">
             <BrowserRouter>
-                {userId
-                    ?
-                    <>
-                        <Button className='logout-button' onClick={logoutUser}>Log out</Button>
-                        <Switch>
-                            <Route path={'/chat'} component={Chat}/>
-                            <Redirect to={'/chat'}/>
-                        </Switch>
-                    </>
-                    :
-                    <Switch>
-                        <Route path={'/registration'}
-                               render={() => (
-                                   <Registration changeUser={changeUser}/>
-                               )}
-                        />
-                        <Route path={'/login'}
-                               render={() => (
-                                   <Login changeUser={changeUser}/>
-                               )}
-                        />
-                        <Redirect to={'/login'}/>
-                    </Switch>
-                }
+                  <>
+                    {userId
+                      ? <PrivateRoute/>
+                      : <PublicRoute/>
+                    }
+                  </>
             </BrowserRouter>
-
         </div>
-    );
+  )
 }
 
-export default App;
+export default App

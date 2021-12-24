@@ -1,18 +1,22 @@
 const User = require('../Models/User')
 
-const getUsers = async (req, res) => {
-    User.find({}, (err, users) => {
-        res.status(200).json(users)
-    })
+const getUsers = (req, res) => {
+  User.find({}, (err, users) => {
+    res.status(200).json(users)
+  })
 }
 
 const getUser = async (req, res) => {
-    const {userId} = req.query
-    const user = User.findById(userId)
+  try {
+    const userId = req.headers.userid
+    const user = await User.findById(userId)
     res.send(user)
+  } catch (e) {
+
+  }
 }
 
 module.exports = {
-    getUsers,
-    getUser
+  getUsers,
+  getUser
 }
