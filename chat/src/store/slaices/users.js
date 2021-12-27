@@ -21,12 +21,6 @@ export const usersSlice = createSlice({
     },
     addUser: (state, action) => {
       state.users.push(action.payload)
-    },
-    getSelectedUserById: (state, action) => {
-      const friendIndex = state.users.findIndex(item => item._id === action.payload)
-      if (friendIndex > -1) {
-        state.friendIndex = friendIndex
-      }
     }
   },
   extraReducers (builder) {
@@ -43,6 +37,8 @@ export const fetchUsers = createAsyncThunk('user/fetchUsers', async () => {
   return allUsers.data.map((item) => ({ ...item, online: false }))
 })
 
-export const { changeUserStatus, getSelectedUserById } = usersSlice.actions
+export const getUsers = state => state.users.users
+
+export const { changeUserStatus, addUser } = usersSlice.actions
 
 export default usersSlice.reducer

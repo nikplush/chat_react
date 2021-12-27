@@ -3,14 +3,14 @@ import { BrowserRouter } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import PrivateRoute from './routes/PrivateRoute/PrivateRoute'
 import PublicRoute from './routes/PublicRoute/PublicRoute'
-import { fetchUserById } from './store/slaices/userInfo'
+import {fetchUserById, getUserInfo} from './store/slaices/userInfo'
 import './App.css'
 
 function App () {
   const myId = localStorage.getItem('userId')
   const [userId, setUserId] = useState(myId)
   const dispatch = useDispatch()
-  const userInfo = useSelector(state => state.userInfo.userInfo)
+  const userInfo = useSelector(getUserInfo)
 
   useEffect(() => {
     if (myId) {
